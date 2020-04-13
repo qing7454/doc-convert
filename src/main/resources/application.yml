@@ -5,8 +5,8 @@ server:
 #文档转换路径配置
 doc:
   convert:
-    docpath: /Users/suyu/Desktop/doc-convert/tmp/doc/
-    imgspath: /Users/suyu/Desktop/doc-convert/tmp/imgs/
+    docpath: D:/doc/
+    imgspath: D:/image/
 aliyun:
   oss:
     accessKeyId:

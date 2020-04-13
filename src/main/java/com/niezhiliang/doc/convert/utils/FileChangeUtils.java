@@ -62,9 +62,9 @@ public class FileChangeUtils {
      */
     public void excel2pdf(String pdfPath, String excelPath) throws Exception {
         // 验证License
-        if (!getLicense()) {
+        /*if (!getLicense()) {
             return;
-        }
+        }*/
         try {
             long old = System.currentTimeMillis();
             Workbook wb = new Workbook(new FileInputStream(excelPath));
@@ -75,7 +75,9 @@ public class FileChangeUtils {
 
             long now = System.currentTimeMillis();
             System.out.println("共耗时：" + ((now - old) / 1000.0) + "秒\n\n" + "文件保存在:" + file.getPath());
+            fileOS.close();
         } catch (Exception e) {
+            e.printStackTrace();
             throw new Exception("convert excel to pdf failed .");
         }
     }

@@ -41,7 +41,7 @@ public class DocContextTest {
     @Test
     public void excelToPdf() {
         BaseParams baseParams = new BaseParams();
-        baseParams.setFilepath(docPath+"个人信息表填写模板.xls");
+        baseParams.setFilepath(docPath+"出库确认-SJDB20200413000020.xls");
         DocContext context = new DocContext(excel2PdfStrategy);
         context.docConvert(baseParams);
     }

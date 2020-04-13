@@ -2,6 +2,7 @@ package com.niezhiliang.doc.convert;
 
 import com.niezhiliang.doc.convert.context.DocContext;
 import com.niezhiliang.doc.convert.entity.BaseParams;
+import com.niezhiliang.doc.convert.strategyImpls.Excel2PdfStrategyImpl;
 import com.niezhiliang.doc.convert.strategyImpls.Pdf2imgStrategyImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -20,6 +21,8 @@ public class IndexController {
 
     @Autowired
     private Pdf2imgStrategyImpl pdf2imgStrategy;
+    @Autowired
+    private Excel2PdfStrategyImpl excel2PdfStrategy;
 
     /**
      *  上传oss返回按图片正确顺序oss的地址
@@ -40,6 +43,18 @@ public class IndexController {
         BaseParams baseParams = new BaseParams();
         baseParams.setFilepath(docPath+"/中国消费者.pdf");
         DocContext context = new DocContext(pdf2imgStrategy);
+        context.docConvert(baseParams);
+        long end = System.currentTimeMillis();
+        System.out.println("共耗时:"+(end - start) /1000.0 +"秒");
+        return "共耗时:"+(end - start) /1000.0 +"秒";
+    }
+
+    @RequestMapping(value = "3")
+    public String excel2Pdf() {
+        long start = System.currentTimeMillis();
+        BaseParams baseParams = new BaseParams();
+        baseParams.setFilepath("E:/个人信息表填写模板.xls");
+        DocContext context = new DocContext(excel2PdfStrategy);
         context.docConvert(baseParams);
         long end = System.currentTimeMillis();
         System.out.println("共耗时:"+(end - start) /1000.0 +"秒");
